@@ -3,14 +3,23 @@ module Danger
   # You need [Tailor](https://tailor.sh) installed and generating a json file
   # to use this plugin
   #
+  # @example Showing summary
+  #
+  #     tailor -f json MyProject/ > tailor.json
+  #     danger-tailor.report 'tailor.json'
+  #
+  # @example Filter out the pods before analyzing
+  #
+  #     danger-tailor.ignored_files = '**/Pods/**'
+  #     danger-tailor.report 'tailor.json'
+  #
   # @see  IntrepidPursuits/danger-tailor
   # @tags xcode, swift, tailor, lint, format, xcodebuild
   #
   class DangerTailor < Plugin
     # The project root, which will be used to make the paths relative.
     # Defaults to `pwd`.
-    # @param    [String] value
-    # @return   [String]
+    # @return   [String] project_root value
     attr_accessor :project_root
 
     # A globbed string or array of strings which should match the files
@@ -18,14 +27,12 @@ module Danger
     # An example would be `'**/Pods/**'` to ignore warnings in Pods that your
     # project uses.
     #
-    # @param    [String or [String]] value
-    # @return   [[String]]
+    # @return   [[String]] ignored-files
     attr_accessor :ignored_files
 
     # Defines if the test summary will be sticky or not.
     # Defaults to `false`.
-    # @param    [Boolean] value
-    # @return   [Boolean]
+    # @return   [Boolean] sticky
     attr_accessor :sticky_summary
 
     def project_root
@@ -72,15 +79,15 @@ module Danger
     # A method that takes the tailor summary, and for each file, parses out
     # any violations found.
     def parse_files(tailor_summary)
-      tailor_summary[:files].each { |f|
+      tailor_summary[:files].each do |f|
         parse_violations(f[:path], f[:violations])
-      }
+      end
     end
 
     # A method that takes a file path, and an array of tailor violation objects,
     # parses the violation, and calls the appropriate Danger method
     def parse_violations(file_path, violations)
-      violations.each { |v|
+      violations.each do |v|
         severity = v[:severity]
         message = format_violation(file_path, v)
 
@@ -89,7 +96,7 @@ module Danger
         elsif severity == 'error'
           fail(message, sticky: false)
         end
-      }
+      end
     end
 
     # A method that returns a formatted string for a violation

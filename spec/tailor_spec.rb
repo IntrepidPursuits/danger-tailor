@@ -32,6 +32,20 @@ module Danger
         @my_plugin.report(warning_path)
         expect(@dangerfile.status_report[:warnings][0]).to eq('/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift:#L21 -> terminating-newline - File should terminate with exactly one newline character (\'\\n\')')
       end
+
+      it 'Parses JSON with errors and no warnings' do
+        error_path = File.expand_path('../errors.json', __FILE__)
+        @my_plugin.report(error_path)
+        expect(@dangerfile.status_report[:errors].length).to be == 5
+        expect(@dangerfile.status_report[:warnings]).to eq([])
+        expect(@dangerfile.status_report[:markdowns]).to eq([])
+      end
+
+      it 'Displays a properly formatted error message' do
+        error_path = File.expand_path('../errors.json', __FILE__)
+        @my_plugin.report(error_path)
+        expect(@dangerfile.status_report[:errors][0]).to eq('/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift:#L21 -> terminating-newline - File should terminate with exactly one newline character (\'\\n\')')
+      end
     end
   end
 end
