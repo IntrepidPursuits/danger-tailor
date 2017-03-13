@@ -1,0 +1,72 @@
+{
+  "files": [
+    {
+      "path": "/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift",
+      "violations": [
+        {
+          "severity": "warning",
+          "rule": "terminating-newline",
+          "location": {
+            "line": 21
+          },
+          "message": "File should terminate with exactly one newline character ('\\n')"
+        }
+      ],
+      "parsed": true
+    },
+    {
+      "path": "/Users/Patrick/Developer/CITest-ios/CITest/ViewController.swift",
+      "violations": [
+        {
+          "severity": "warning",
+          "rule": "terminating-newline",
+          "location": {
+            "line": 14
+          },
+          "message": "File should terminate with exactly one newline character ('\\n')"
+        }
+      ],
+      "parsed": true
+    },
+    {
+      "path": "/Users/Patrick/Developer/CITest-ios/CITest/ViewModel.swift",
+      "violations": [
+        {
+          "severity": "warning",
+          "rule": "trailing-whitespace",
+          "location": {
+            "line": 14,
+            "column": 4
+          },
+          "message": "Line should not have any trailing whitespace"
+        },
+        {
+          "severity": "warning",
+          "rule": "trailing-whitespace",
+          "location": {
+            "line": 18,
+            "column": 4
+          },
+          "message": "Line should not have any trailing whitespace"
+        },
+        {
+          "severity": "warning",
+          "rule": "function-whitespace",
+          "location": {
+            "line": 21,
+            "column": 6
+          },
+          "message": "Function should have at least one blank line after it"
+        }
+      ],
+      "parsed": true
+    }
+  ],
+  "summary": {
+    "violations": 5,
+    "warnings": 5,
+    "analyzed": 3,
+    "errors": 0,
+    "skipped": 0
+  }
+}

@@ -15,27 +15,26 @@ module Danger
         @my_plugin = @dangerfile.tailor
       end
 
-      # Some examples for writing tests
-      # You should replace these with your own.
-
-      it "Warns on a monday" do
-        monday_date = Date.parse("2016-07-11")
-        allow(Date).to receive(:today).and_return monday_date
-
-        @my_plugin.warn_on_mondays
-
-        expect(@dangerfile.status_report[:warnings]).to eq(["Trying to merge code on a Monday"])
+      it 'Parses JSON with warnings and no errors' do
+        warning_path = File.expand_path('../warnings.json', __FILE__)
+        @my_plugin.report(warning_path)
+        expect(@dangerfile.status_report[:errors]).to eq([])
+        expect(@dangerfile.status_report[:warnings].length).to be == 5
+        expect(@dangerfile.status_report[:markdowns]).to eq([])
       end
 
-      it "Does nothing on a tuesday" do
-        monday_date = Date.parse("2016-07-12")
-        allow(Date).to receive(:today).and_return monday_date
-
-        @my_plugin.warn_on_mondays
-
-        expect(@dangerfile.status_report[:warnings]).to eq([])
+      it 'Displays a summary message for warnings' do
+        warning_path = File.expand_path('../warnings.json', __FILE__)
+        @my_plugin.report(warning_path)
+        # puts @dangerfile.status_report
+        expect(@dangerfile.status_report[:messages]).to eq(["Tailor Summary: Analyzed 3 files. Found 5 violations. 5 Warnings and 0 Errors."])
       end
 
+      it 'Displays a properly formatted warning message' do
+        warning_path = File.expand_path('../warnings.json', __FILE__)
+        @my_plugin.report(warning_path)
+        expect(@dangerfile.status_report[:warnings][0]).to eq("/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift:#21 -> terminating-newline - File should terminate with exactly one newline character ('\\n')")
+      end
     end
   end
 end
