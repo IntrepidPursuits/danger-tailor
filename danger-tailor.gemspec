@@ -8,9 +8,11 @@ Gem::Specification.new do |spec|
   spec.version       = Tailor::VERSION
   spec.authors       = ['Patrick Butkiewicz']
   spec.email         = ['patrick@intrepid.io']
-  spec.description   = %q{A short description of danger-tailor.}
-  spec.summary       = %q{A longer description of danger-tailor.}
-  spec.homepage      = 'https://github.com/Patrick Butkiewicz/danger-tailor'
+  spec.description   = 'Show formatted static analysis reports in your PRs'
+  spec.summary       = 'A [Danger](https://danger.systems) plugin that shows ' \
+                        'warnings and errors generated from the Tailor ' \
+                        'static analysis tool for the Swift language.'
+  spec.homepage      = 'https://github.com/IntrepidPursuits/danger-tailor'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
@@ -28,8 +30,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.4'
 
   # Linting code and docs
-  spec.add_development_dependency "rubocop", "~> 0.41"
-  spec.add_development_dependency "yard", "~> 0.8"
+  spec.add_development_dependency 'rubocop', '~> 0.41'
+  spec.add_development_dependency 'yard', '~> 0.8'
 
   # Makes testing easy via `bundle exec guard`
   spec.add_development_dependency 'guard', '~> 2.14'
@@ -39,7 +41,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'listen', '3.0.7'
 
   # Use coveralls
-  spec.add_development_dependency "coveralls", "0.8.19"
+  spec.add_development_dependency 'coveralls', '0.8.19'
 
   # This gives you the chance to run a REPL inside your tests
   # via:
