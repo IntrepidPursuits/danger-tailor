@@ -6,9 +6,6 @@ module Danger
       expect(Danger::DangerTailor.new(nil)).to be_a Danger::Plugin
     end
 
-    #
-    # You should test your custom attributes and methods here
-    #
     describe 'with Dangerfile' do
       before do
         @dangerfile = testing_dangerfile
@@ -27,13 +24,13 @@ module Danger
         warning_path = File.expand_path('../warnings.json', __FILE__)
         @my_plugin.report(warning_path)
         # puts @dangerfile.status_report
-        expect(@dangerfile.status_report[:messages]).to eq(["Tailor Summary: Analyzed 3 files. Found 5 violations. 5 Warnings and 0 Errors."])
+        expect(@dangerfile.status_report[:messages]).to eq(['Tailor Summary: Analyzed 3 files. Found 5 violations. 5 Warnings and 0 Errors.'])
       end
 
       it 'Displays a properly formatted warning message' do
         warning_path = File.expand_path('../warnings.json', __FILE__)
         @my_plugin.report(warning_path)
-        expect(@dangerfile.status_report[:warnings][0]).to eq("/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift:#21 -> terminating-newline - File should terminate with exactly one newline character ('\\n')")
+        expect(@dangerfile.status_report[:warnings][0]).to eq('/Users/Patrick/Developer/CITest-ios/CITest/AppDelegate.swift:#L21 -> terminating-newline - File should terminate with exactly one newline character (\'\\n\')')
       end
     end
   end

@@ -96,7 +96,7 @@ module Danger
     # @return String
     #
     def format_violation(file_path, violation)
-      "#{file_path}:##{violation[:location][:line]} -> #{violation[:rule]} - #{violation[:message]}"
+      "#{file_path}:#L#{violation[:location][:line]} -> #{violation[:rule]} - #{violation[:message]}"
     end
   end
 end
